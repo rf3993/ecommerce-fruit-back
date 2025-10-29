@@ -5,6 +5,9 @@ import UserRouter from './controllers/user_controller.js'
 import ProductRouter from './controllers/product_controller.js'
 import stripeMethods from './services/stripe.js';
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 mongoose.connect(mongod.getUri()).then(() => {
     const app = express();
@@ -34,7 +37,7 @@ mongoose.connect(mongod.getUri()).then(() => {
         res.send(paymentLink);
     })
 
-    app.listen(3000);
+    app.listen(process.env.PORT);
 }).catch(() => {
     console.log("Erro ao conectar no banco")
 })
